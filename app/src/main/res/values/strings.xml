@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Kecak</string>
+
+    <string name="openDrawer">Drawer dibuka</string>
+    <string name="closeDrawer">Drawer ditutup</string>
+    <string name="urlAddress">http://10.10.10.20/kecak/public/</string>
+
+</resources>
