@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".KecakActivity"></activity>
+        <activity android:name=".KecakActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".RegistrasiActivity" />
         <activity android:name=".LoginActivity" />

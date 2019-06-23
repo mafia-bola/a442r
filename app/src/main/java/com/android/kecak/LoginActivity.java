@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText editUsername, editPassword;
     Button btnMasuk, btnRegistrasi;
+    ArrayList<Kecak> kecaks = new ArrayList<>();
 
     @Override
     public void onBackPressed() {
@@ -102,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = editUsername.getText().toString().trim();
                 final String password = editPassword.getText().toString().trim();
+
                 String urlAddress = getString(R.string.urlAddress);
                 final String loginAddress = urlAddress + "/api/auth/login";
 
@@ -113,25 +116,42 @@ public class LoginActivity extends AppCompatActivity {
                                 try {
                                     JSONObject jsonObject = new JSONObject(response);
                                     String status = jsonObject.getString("status");
+
                                     JSONArray pengunjung = jsonObject.getJSONArray("pengunjung");
+                                    Kecak pengunjung1;
 
                                     if (status.equals("1")){
                                         for (int i=0; i<pengunjung.length(); i++){
                                             JSONObject object = pengunjung.getJSONObject(i);
+
                                             long id = object.getLong("id");
                                             String nama = object.getString("nama").trim();
                                             String alamat = object.getString("alamat").trim();
                                             String email = object.getString("email").trim();
 
+                                            pengunjung1 = new Kecak();
+                                            pengunjung1.setId_pengunjung(id);
+                                            pengunjung1.setNama_pengunjung(nama);
+                                            pengunjung1.setAlamat(alamat);
+                                            pengunjung1.setEmail(email);
+                                            kecaks.add(pengunjung1);
+
+                                            final long id_pengunjung = pengunjung1.getId_pengunjung();
+                                            final String nama_pengunjung = pengunjung1.getNama_pengunjung();
+                                            final String alamat_pengunjung = pengunjung1.getAlamat();
+                                            final String email_pengunjung = pengunjung1.getEmail();
+
                                             finish();
                                             Toast.makeText(LoginActivity.this, "Selamat Datang "+nama, Toast.LENGTH_SHORT).show();
                                             Intent menu = new Intent(LoginActivity.this, MenuActivity.class);
-                                            menu.putExtra("id", id);
-                                            menu.putExtra("nama", nama);
-                                            menu.putExtra("alamat", alamat);
-                                            menu.putExtra("email", email);
+                                            menu.putExtra("id_pengunjung", id_pengunjung);
+                                            menu.putExtra("nama_pengunjung", nama_pengunjung);
+                                            menu.putExtra("alamat", alamat_pengunjung);
+                                            menu.putExtra("email", email_pengunjung);
                                             startActivity(menu);
                                         }
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, "Mohon email dan password diperiksa dengan baik", Toast.LENGTH_SHORT).show();
                                     }
 
                                 } catch (JSONException e){
