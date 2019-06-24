@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 public class KecakActivity extends AppCompatActivity {
 
     TextView judulKecak, txtJadwal, txtHarga, txtDeskripsi;
+    TextView txtIdKecak, txtIdPengunjung;
     TextView txtNamaPengunjung;
     ImageView fotoKecak;
     Toolbar toolbar;
@@ -31,6 +32,9 @@ public class KecakActivity extends AppCompatActivity {
         txtNamaPengunjung = findViewById(R.id.txtNamaPengunjung);
         btnPemesanan = findViewById(R.id.btnPemesanan);
 
+        txtIdKecak = findViewById(R.id.txtIdKecak);
+        txtIdPengunjung = findViewById(R.id.txtIdPengunjung);
+
         Intent kecak1 = getIntent();
         final long id = kecak1.getLongExtra("id_kecak",0);
         final String judul = kecak1.getStringExtra("nama_kecak");
@@ -38,17 +42,18 @@ public class KecakActivity extends AppCompatActivity {
         final String jadwal = kecak1.getStringExtra("jadwal");
         final String harga = kecak1.getStringExtra("harga");
         final String foto_kecak = kecak1.getStringExtra("foto_kecak");
-        final long id_pengunjung = kecak1.getLongExtra("id_pengunjung", 0);
-        final String nama_pengunjung = kecak1.getStringExtra("nama_pengunjung");
-        final String alamat_pengunjung = kecak1.getStringExtra("alamat");
-        final String email_pengunjung = kecak1.getStringExtra("email");
 
-        judulKecak.setText("Nama Tiket : "+judul);
-        txtJadwal.setText("Jadwal : "+jadwal);
-        txtHarga.setText("Harga : Rp "+harga);
-        txtDeskripsi.setText("Deskripsi : "+deskripsi);
-        txtNamaPengunjung.setText(nama_pengunjung);
+        Pengunjung user = SharedPrefManager.getInstance(this).getUser();
+
+        judulKecak.setText(judul);
+        txtJadwal.setText(jadwal);
+        txtHarga.setText(harga);
+        txtDeskripsi.setText(deskripsi);
+        txtNamaPengunjung.setText(user.getNama_pengunjung());
         PicassoClient.downloadImage(getApplicationContext(), foto_kecak, fotoKecak);
+
+        txtIdKecak.setText(Long.toString(id));
+        txtIdPengunjung.setText(Long.toString(user.getId_pengunjung()));
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

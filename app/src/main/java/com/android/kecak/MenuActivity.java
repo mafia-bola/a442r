@@ -50,9 +50,8 @@ public class MenuActivity extends AppCompatActivity {
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent logout = new Intent(MenuActivity.this, LoginActivity.class);
-                        startActivity(logout);
                         finish();
+                        SharedPrefManager.getInstance(getApplicationContext()).logout();
                     }
                 })
                 .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
@@ -70,78 +69,15 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        Intent pengunjung = getIntent();
-        final long id_pengunjung = pengunjung.getLongExtra("id_pengunjung", 0);
-        final String nama_pengunjung = pengunjung.getStringExtra("nama_pengunjung");
-        final String alamat_pengunjung = pengunjung.getStringExtra("alamat");
-        final String email_pengunjung = pengunjung.getStringExtra("email");
+        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+
+        Pengunjung user = SharedPrefManager.getInstance(this).getUser();
 
         listView = findViewById(R.id.listView);
-        String urlAddress = getString(R.string.urlAddress);
-        final String kecakAddress = urlAddress + "api/pengunjung/" + email_pengunjung;
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, kecakAddress,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            String info = jsonObject.getString("info");
-
-                            JSONArray infoKecak = jsonObject.getJSONArray("kecak");
-                            Kecak kecak;
-
-                            if (info.equals("tersedia")){
-                                for (int i=0; i<infoKecak.length(); i++) {
-                                    JSONObject dataKecak = infoKecak.getJSONObject(i);
-
-                                    long id = dataKecak.getLong("id");
-                                    String nama = dataKecak.getString("nama").trim();
-                                    String alamat = dataKecak.getString("alamat").trim();
-                                    String email = dataKecak.getString("email").trim();
-
-                                    long id_kecak = dataKecak.getLong("id");
-                                    String nama_kecak = dataKecak.getString("nama_kecak");
-                                    String deskripsi = dataKecak.getString("deskripsi");
-                                    String jadwal = dataKecak.getString("jadwal");
-                                    String foto_kecak = dataKecak.getString("foto");
-                                    String harga = dataKecak.getString("harga");
-
-                                    String urlAddress = getString(R.string.urlAddress);
-                                    foto_kecak = urlAddress+foto_kecak;
-
-                                    kecak = new Kecak();
-                                    kecak.setId_pengunjung(id);
-                                    kecak.setNama_pengunjung(nama);
-                                    kecak.setAlamat(alamat);
-                                    kecak.setEmail(email);
-
-                                    kecak.setId_kecak(id_kecak);
-                                    kecak.setNama_kecak(nama_kecak);
-                                    kecak.setDeskripsi(deskripsi);
-                                    kecak.setJadwal(jadwal);
-                                    kecak.setFoto_kecak(foto_kecak);
-                                    kecak.setHarga(harga);
-
-                                    kecaks.add(kecak);
-                                }
-                            }
-                            KecakAdapter adapter = new KecakAdapter(getApplicationContext(), kecaks);
-                            listView.setAdapter(adapter);
-
-                        } catch (JSONException e){
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        dataKecak();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -154,9 +90,9 @@ public class MenuActivity extends AppCompatActivity {
         JustifiedTextView txtEmail = headerView.findViewById(R.id.txtEmail);
         JustifiedTextView txtAlamat = headerView.findViewById(R.id.txtAlamat);
 
-        txtNama.setText(nama_pengunjung);
-        txtEmail.setText(email_pengunjung);
-        txtAlamat.setText(alamat_pengunjung);
+        txtNama.setText(user.getNama_pengunjung());
+        txtEmail.setText(user.getEmail());
+        txtAlamat.setText(user.getAlamat());
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -171,9 +107,8 @@ public class MenuActivity extends AppCompatActivity {
                                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent logout = new Intent(MenuActivity.this, LoginActivity.class);
-                                        startActivity(logout);
                                         finish();
+                                        SharedPrefManager.getInstance(getApplicationContext()).logout();
                                     }
                                 })
                                 .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
@@ -207,6 +142,64 @@ public class MenuActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
     }
 
+    private void dataKecak() {
+        String urlAddress = getString(R.string.urlAddress);
+        final String kecakAddress = urlAddress + "api/tiket/";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, kecakAddress,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String info = jsonObject.getString("info");
+
+                            JSONArray infoKecak = jsonObject.getJSONArray("kecak");
+                            Kecak kecak;
+
+                            if (info.equals("tersedia")){
+                                for (int i=0; i<infoKecak.length(); i++) {
+                                    JSONObject dataKecak = infoKecak.getJSONObject(i);
+
+                                    long id_kecak = dataKecak.getLong("id");
+                                    String nama_kecak = dataKecak.getString("nama_kecak");
+                                    String deskripsi = dataKecak.getString("deskripsi");
+                                    String jadwal = dataKecak.getString("jadwal");
+                                    String foto_kecak = dataKecak.getString("foto");
+                                    String harga = dataKecak.getString("harga");
+
+                                    String urlAddress = getString(R.string.urlAddress);
+                                    foto_kecak = urlAddress+foto_kecak;
+
+                                    kecak = new Kecak();
+                                    kecak.setId_kecak(id_kecak);
+                                    kecak.setNama_kecak(nama_kecak);
+                                    kecak.setDeskripsi(deskripsi);
+                                    kecak.setJadwal(jadwal);
+                                    kecak.setFoto_kecak(foto_kecak);
+                                    kecak.setHarga(harga);
+
+                                    kecaks.add(kecak);
+                                }
+                            }
+                            KecakAdapter adapter = new KecakAdapter(getApplicationContext(), kecaks);
+                            listView.setAdapter(adapter);
+
+                        } catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
@@ -215,11 +208,12 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent pengunjung = getIntent();
-        final long id_pengunjung = pengunjung.getLongExtra("id_pengunjung", 0);
-        final String nama_pengunjung = pengunjung.getStringExtra("nama_pengunjung");
-        final String alamat_pengunjung = pengunjung.getStringExtra("alamat");
-        final String email_pengunjung = pengunjung.getStringExtra("email");
+        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+
+        Pengunjung user = SharedPrefManager.getInstance(this).getUser();
 
         switch (item.getItemId()) {
             case R.id.btnPesan:
@@ -227,7 +221,8 @@ public class MenuActivity extends AppCompatActivity {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
                 alert
                         .setTitle("Login")
-                        .setMessage("Nama : "+nama_pengunjung+"\n"+"Email : "+email_pengunjung+"\n"+"Alamat : "+alamat_pengunjung)
+                        .setMessage("Nama : "+user.getNama_pengunjung()+"\n"+
+                                "Email : "+user.getEmail()+"\n"+"Alamat : "+user.getAlamat())
                         .setPositiveButton("Kembali", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

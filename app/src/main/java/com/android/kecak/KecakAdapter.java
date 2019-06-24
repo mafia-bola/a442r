@@ -55,17 +55,12 @@ public class KecakAdapter extends BaseAdapter {
         kecak.getJadwal();
         kecak.getFoto_kecak();
         kecak.getHarga();
-        kecak.getId_pengunjung();
-        kecak.getNama_pengunjung();
-        kecak.getAlamat();
-        kecak.getEmail();
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openKecak(kecak.getId_kecak(), kecak.getNama_kecak(), kecak.getDeskripsi(), kecak.getJadwal(),
-                        kecak.getFoto_kecak(), kecak.getHarga(),
-                        kecak.getId_pengunjung(), kecak.getNama_pengunjung(), kecak.getAlamat(), kecak.getEmail());
+                        kecak.getFoto_kecak(), kecak.getHarga());
             }
         });
 
@@ -74,9 +69,7 @@ public class KecakAdapter extends BaseAdapter {
 
     private void openKecak(
         long id_kecak,
-        String nama_kecak, String deskripsi, String jadwal, String foto_kecak, String harga,
-        long id_pengunjung,
-        String nama_pengunjung, String alamat_pengunjung, String email_pengunjung
+        String nama_kecak, String deskripsi, String jadwal, String foto_kecak, String harga
     ) {
         Intent detailKecak = new Intent(c, KecakActivity.class);
         detailKecak.putExtra("id_kecak", id_kecak);
@@ -85,10 +78,6 @@ public class KecakAdapter extends BaseAdapter {
         detailKecak.putExtra("jadwal", jadwal);
         detailKecak.putExtra("foto_kecak", foto_kecak);
         detailKecak.putExtra("harga", harga);
-        detailKecak.putExtra("id_pengunjung", id_pengunjung);
-        detailKecak.putExtra("nama_pengunjung", nama_pengunjung);
-        detailKecak.putExtra("alamat_pengunjung", alamat_pengunjung);
-        detailKecak.putExtra("email_pengunjung", email_pengunjung);
         detailKecak.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         c.startActivity(detailKecak);
     }

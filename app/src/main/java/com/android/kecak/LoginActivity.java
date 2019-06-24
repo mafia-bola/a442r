@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
@@ -57,34 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private TextWatcher textWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            checkValue();
-        }
-    };
-
-    void checkValue(){
-        String user = editUsername.getText().toString();
-        String pass = editPassword.getText().toString();
-
-        if (user.equals("") || pass.equals("")){
-            btnMasuk.setEnabled(false);
-        } else {
-            btnMasuk.setEnabled(true);
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,91 +68,15 @@ public class LoginActivity extends AppCompatActivity {
         btnMasuk = findViewById(R.id.btnMasuk);
         btnRegistrasi = findViewById(R.id.btnRegistrasi);
 
-        editUsername.addTextChangedListener(textWatcher);
-        editPassword.addTextChangedListener(textWatcher);
-        checkValue();
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, MenuActivity.class));
+        }
 
         btnMasuk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String email = editUsername.getText().toString().trim();
-                final String password = editPassword.getText().toString().trim();
-
-                String urlAddress = getString(R.string.urlAddress);
-                final String loginAddress = urlAddress + "/api/auth/login";
-
-                if (!email.isEmpty() && !password.isEmpty()){
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, loginAddress,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                    JSONObject jsonObject = new JSONObject(response);
-                                    String status = jsonObject.getString("status");
-
-                                    JSONArray pengunjung = jsonObject.getJSONArray("pengunjung");
-                                    Kecak pengunjung1;
-
-                                    if (status.equals("1")){
-                                        for (int i=0; i<pengunjung.length(); i++){
-                                            JSONObject object = pengunjung.getJSONObject(i);
-
-                                            long id = object.getLong("id");
-                                            String nama = object.getString("nama").trim();
-                                            String alamat = object.getString("alamat").trim();
-                                            String email = object.getString("email").trim();
-
-                                            pengunjung1 = new Kecak();
-                                            pengunjung1.setId_pengunjung(id);
-                                            pengunjung1.setNama_pengunjung(nama);
-                                            pengunjung1.setAlamat(alamat);
-                                            pengunjung1.setEmail(email);
-                                            kecaks.add(pengunjung1);
-
-                                            final long id_pengunjung = pengunjung1.getId_pengunjung();
-                                            final String nama_pengunjung = pengunjung1.getNama_pengunjung();
-                                            final String alamat_pengunjung = pengunjung1.getAlamat();
-                                            final String email_pengunjung = pengunjung1.getEmail();
-
-                                            finish();
-                                            Toast.makeText(LoginActivity.this, "Selamat Datang "+nama, Toast.LENGTH_SHORT).show();
-                                            Intent menu = new Intent(LoginActivity.this, MenuActivity.class);
-                                            menu.putExtra("id_pengunjung", id_pengunjung);
-                                            menu.putExtra("nama_pengunjung", nama_pengunjung);
-                                            menu.putExtra("alamat", alamat_pengunjung);
-                                            menu.putExtra("email", email_pengunjung);
-                                            startActivity(menu);
-                                        }
-                                    } else {
-                                        Toast.makeText(LoginActivity.this, "Mohon email dan password diperiksa dengan baik", Toast.LENGTH_SHORT).show();
-                                    }
-
-                                } catch (JSONException e){
-                                    e.printStackTrace();
-                                    Toast.makeText(LoginActivity.this, "Mohon email dan password diperiksa dengan baik", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(LoginActivity.this, "Error "+error.toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                    {
-                        @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
-                            Map<String, String> params = new HashMap<>();
-                            params.put("email", email);
-                            params.put("password", password);
-                            return params;
-                        }
-                    };
-
-                    RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
-                    requestQueue.add(stringRequest);
-                } else {
-                    Toast.makeText(LoginActivity.this, "Mohon email dan password diisi dengan benar", Toast.LENGTH_SHORT).show();
-                }
+                userLogin();
             }
         });
 
@@ -191,5 +88,79 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void userLogin() {
+        final String email = editUsername.getText().toString().trim();
+        final String password = editPassword.getText().toString().trim();
+
+        String urlAddress = getString(R.string.urlAddress);
+        final String loginAddress = urlAddress + "/api/auth/login";
+
+        if (TextUtils.isEmpty(email)) {
+            editUsername.setError("Mohon Periksa kembali email anda");
+            editUsername.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            editPassword.setError("Masukkan kembali password anda");
+            editPassword.requestFocus();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, loginAddress,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String status = jsonObject.getString("status");
+                            JSONArray pengunjung = jsonObject.getJSONArray("pengunjung");
+
+                            if (status.equals("1")){
+                                for (int i=0; i<pengunjung.length(); i++){
+                                    JSONObject object = pengunjung.getJSONObject(i);
+
+                                    Pengunjung user = new Pengunjung(
+                                            object.getLong("id"),
+                                            object.getString("nama"),
+                                            object.getString("alamat"),
+                                            object.getString("email")
+                                    );
+
+                                    SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+
+                                    finish();
+                                    Toast.makeText(LoginActivity.this, "Selamat Datang "+object.getString("nama"), Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(), MenuActivity.class));
+                                }
+
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Mohon email dan password diperiksa dengan baik", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e){
+                            e.printStackTrace();
+                            Toast.makeText(LoginActivity.this, "Mohon email dan password diperiksa dengan baik", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(LoginActivity.this, "Error "+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+                params.put("password", password);
+                return params;
+            }
+        };
+
+        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 }
