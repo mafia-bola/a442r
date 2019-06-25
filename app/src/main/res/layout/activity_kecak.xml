@@ -77,9 +77,32 @@
                         android:layout_height="wrap_content" />
 
                     <EditText
-                        android:id="@+id/editJumlah"
+                        android:id="@+id/txtTanggal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:hint="Tanggal Pesanan"
+                        android:inputType="date"/>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/editJumlah"
+                            android:hint="Jumlah Pesanan"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:layout_width="185dp"
+                            android:layout_height="wrap_content" />
+
+                        <Button
+                            android:id="@+id/btnPenjumlahan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Total"/>
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/txtTotal"
@@ -90,7 +113,7 @@
                         android:id="@+id/btnPemesanan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Pemesanan"/>
+                        android:text="Pesan"/>
 
                 </LinearLayout>
 
