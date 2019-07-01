@@ -107,6 +107,9 @@ public class KecakActivity extends AppCompatActivity {
         btnPemesanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent konfirmasi = new Intent(KecakActivity.this, KonfirmasiActivity.class);
+                startActivity(konfirmasi);
+                finish();
                 pemesanan();
             }
         });
@@ -132,6 +135,8 @@ public class KecakActivity extends AppCompatActivity {
                             String status = jsonObject.getString("status");
 
                             if (status.equals("sukses")){
+
+
                                 Toast.makeText(KecakActivity.this, "Pemesanan telah dikirim", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e){

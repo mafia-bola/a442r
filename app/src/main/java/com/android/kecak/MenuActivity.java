@@ -217,6 +217,8 @@ public class MenuActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.btnPesan:
+                Intent konfirmasi = new Intent(MenuActivity.this, KonfirmasiActivity.class);
+                startActivity(konfirmasi);
             case R.id.btnProfil:
                 AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
                 alert
