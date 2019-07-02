@@ -23,21 +23,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <!--<TextView-->
-                        <!--android:id="@+id/txtIdPemesanan"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content" />-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/txtIdPengunjung"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content" />-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/txtIdKecak"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content" />-->
-
                     <TextView
                         android:id="@+id/txtNamaPengunjung"
                         android:layout_width="match_parent"
@@ -45,21 +30,6 @@
 
                     <TextView
                         android:id="@+id/txtTanggalPesan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/txtJumlah"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content" />-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/txtHarga"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content" />-->
-
-                    <TextView
-                        android:id="@+id/txtTotal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 

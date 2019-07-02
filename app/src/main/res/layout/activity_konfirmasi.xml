@@ -38,17 +38,12 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/txtNamaKecak"
+                    android:id="@+id/txtTanggalPesan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/txtJadwal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/txtHargaKecak"
+                    android:id="@+id/txtHarga"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

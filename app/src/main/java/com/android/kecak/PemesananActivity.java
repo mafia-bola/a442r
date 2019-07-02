@@ -49,8 +49,6 @@ public class PemesananActivity extends AppCompatActivity {
         listView = findViewById(R.id.listView);
         dataPemesanan();
 
-
-
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Pemesanan Kecak");

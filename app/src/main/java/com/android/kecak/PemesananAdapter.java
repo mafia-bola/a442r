@@ -40,25 +40,11 @@ public class PemesananAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(c).inflate(R.layout.pemesanan_model, parent, false);
         }
 
-//        TextView txtIdPemesanan = convertView.findViewById(R.id.txtIdPemesanan);
-//        TextView txtIdPengunjung = convertView.findViewById(R.id.txtIdPengunjung);
-//        TextView txtIdKecak = convertView.findViewById(R.id.txtIdKecak);
         TextView txtTanggalPesan = convertView.findViewById(R.id.txtTanggalPesan);
-        TextView txtJumlah = convertView.findViewById(R.id.txtJumlah);
-        TextView txtHarga = convertView.findViewById(R.id.txtHarga);
-        TextView txtTotal = convertView.findViewById(R.id.txtTotal);
         TextView txtStatus = convertView.findViewById(R.id.txtStatus);
 
         final Konfirmasi konfirmasi = (Konfirmasi) this.getItem(position);
-//        txtIdPemesanan.setText(String.valueOf(konfirmasi.getId_pemesanan()));
-//        txtIdPengunjung.setText(String.valueOf(konfirmasi.getPengunjung_id()));
-//        txtIdKecak.setText(String.valueOf(konfirmasi.getKecak_id()));
         txtTanggalPesan.setText(konfirmasi.getTanggal_pesan());
-//        txtJumlah.setText(String.valueOf(konfirmasi.getJumlah()));
-//        txtHarga.setText(String.valueOf(konfirmasi.getHarga()));
-        txtTotal.setText(String.valueOf(konfirmasi.getTotal()));
-//        txtStatus.setText(konfirmasi.getStatus());
-
         if (konfirmasi.getStatus().equals("0")){
             txtStatus.setText("Belum terkonfirmasi");
         } else {
