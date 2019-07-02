@@ -13,6 +13,13 @@ public class KonfirmasiActivity extends AppCompatActivity {
     Button btnGaleri, btnKonfirmasi;
 
     @Override
+    public void onBackPressed() {
+        Intent back = new Intent(KonfirmasiActivity.this, MenuActivity.class);
+        startActivity(back);
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_konfirmasi);

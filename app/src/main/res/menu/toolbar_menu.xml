@@ -2,14 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/btnPesan"
-        android:icon="@drawable/ic_add_white_24dp"
-        app:showAsAction="ifRoom"
-        android:title="Pesan">
-    </item>
-    <item
         android:id="@+id/btnProfil"
-        android:icon="@drawable/ic_person_white_24dp"
+        android:icon="@drawable/ic_info_outline_white_24dp"
         app:showAsAction="ifRoom|withText"
         android:title="Profil">
     </item>

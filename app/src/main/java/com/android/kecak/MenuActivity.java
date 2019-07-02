@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.DialogInterface;
@@ -40,6 +41,7 @@ public class MenuActivity extends AppCompatActivity {
     Toolbar toolbar;
     ListView listView;
     ArrayList<Kecak> kecaks = new ArrayList<>();
+    CardView cardKonfirmasi, cardAbout;
 
     @Override
     public void onBackPressed() {
@@ -140,6 +142,24 @@ public class MenuActivity extends AppCompatActivity {
         };
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+
+        cardKonfirmasi = findViewById(R.id.cardKonfirmasi);
+        cardKonfirmasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent konfirmasi = new Intent(MenuActivity.this, PemesananActivity.class);
+                startActivity(konfirmasi);
+                finish();
+            }
+        });
+
+        cardAbout = findViewById(R.id.cardAbout);
+        cardAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void dataKecak() {
@@ -182,6 +202,7 @@ public class MenuActivity extends AppCompatActivity {
                                     kecaks.add(kecak);
                                 }
                             }
+
                             KecakAdapter adapter = new KecakAdapter(getApplicationContext(), kecaks);
                             listView.setAdapter(adapter);
 
@@ -216,9 +237,6 @@ public class MenuActivity extends AppCompatActivity {
         Pengunjung user = SharedPrefManager.getInstance(this).getUser();
 
         switch (item.getItemId()) {
-            case R.id.btnPesan:
-                Intent konfirmasi = new Intent(MenuActivity.this, KonfirmasiActivity.class);
-                startActivity(konfirmasi);
             case R.id.btnProfil:
                 AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
                 alert

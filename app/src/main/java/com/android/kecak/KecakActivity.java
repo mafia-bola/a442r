@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -89,6 +91,7 @@ public class KecakActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(judul);
 
         editJumlah = findViewById(R.id.editJumlah);
+        editJumlah.setText("0");
         txtTotal = findViewById(R.id.txtTotal);
         txtTanggal = findViewById(R.id.txtTanggal);
         btnPenjumlahan = findViewById(R.id.btnPenjumlahan);
@@ -107,9 +110,9 @@ public class KecakActivity extends AppCompatActivity {
         btnPemesanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent konfirmasi = new Intent(KecakActivity.this, KonfirmasiActivity.class);
+                Intent konfirmasi = new Intent(KecakActivity.this, PemesananActivity.class);
                 startActivity(konfirmasi);
-                finish();
+                finishAffinity();
                 pemesanan();
             }
         });
@@ -135,8 +138,6 @@ public class KecakActivity extends AppCompatActivity {
                             String status = jsonObject.getString("status");
 
                             if (status.equals("sukses")){
-
-
                                 Toast.makeText(KecakActivity.this, "Pemesanan telah dikirim", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e){

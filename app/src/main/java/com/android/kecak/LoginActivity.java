@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText editUsername, editPassword;
     Button btnMasuk, btnRegistrasi;
-    ArrayList<Kecak> kecaks = new ArrayList<>();
 
     @Override
     public void onBackPressed() {
