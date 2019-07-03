@@ -14,24 +14,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 import com.uncopt.android.widget.text.justify.JustifiedTextView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class MenuActivity extends AppCompatActivity {
@@ -39,9 +24,7 @@ public class MenuActivity extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     Toolbar toolbar;
-    ListView listView;
-    ArrayList<Kecak> kecaks = new ArrayList<>();
-    CardView cardKonfirmasi, cardAbout;
+    CardView cardKecak, cardKonfirmasi, cardHistory, cardAbout, cardLogout;
 
     @Override
     public void onBackPressed() {
@@ -77,9 +60,6 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         Pengunjung user = SharedPrefManager.getInstance(this).getUser();
-
-        listView = findViewById(R.id.listView);
-        dataKecak();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -143,6 +123,16 @@ public class MenuActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
+        cardKecak = findViewById(R.id.cardKecak);
+        cardKecak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent kecak = new Intent(MenuActivity.this, KecakList.class);
+                startActivity(kecak);
+                finish();
+            }
+        });
+
         cardKonfirmasi = findViewById(R.id.cardKonfirmasi);
         cardKonfirmasi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,72 +143,51 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        cardHistory = findViewById(R.id.cardHistory);
+        cardHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent history = new Intent(MenuActivity.this, HistoryActivity.class);
+                startActivity(history);
+                finish();
+            }
+        });
+
         cardAbout = findViewById(R.id.cardAbout);
         cardAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent about = new Intent(MenuActivity.this, AboutActivity.class);
+                startActivity(about);
+                finish();
             }
         });
-    }
 
-    private void dataKecak() {
-        String urlAddress = getString(R.string.urlAddress);
-        final String kecakAddress = urlAddress + "api/tiket/";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, kecakAddress,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            String info = jsonObject.getString("info");
-
-                            JSONArray infoKecak = jsonObject.getJSONArray("kecak");
-                            Kecak kecak;
-
-                            if (info.equals("tersedia")){
-                                for (int i=0; i<infoKecak.length(); i++) {
-                                    JSONObject dataKecak = infoKecak.getJSONObject(i);
-
-                                    long id_kecak = dataKecak.getLong("id");
-                                    String nama_kecak = dataKecak.getString("nama_kecak");
-                                    String deskripsi = dataKecak.getString("deskripsi");
-                                    String jadwal = dataKecak.getString("jadwal");
-                                    String foto_kecak = dataKecak.getString("foto");
-                                    String harga = dataKecak.getString("harga");
-
-                                    String urlAddress = getString(R.string.urlAddress);
-                                    foto_kecak = urlAddress+foto_kecak;
-
-                                    kecak = new Kecak();
-                                    kecak.setId_kecak(id_kecak);
-                                    kecak.setNama_kecak(nama_kecak);
-                                    kecak.setDeskripsi(deskripsi);
-                                    kecak.setJadwal(jadwal);
-                                    kecak.setFoto_kecak(foto_kecak);
-                                    kecak.setHarga(harga);
-
-                                    kecaks.add(kecak);
-                                }
-                            }
-
-                            KecakAdapter adapter = new KecakAdapter(getApplicationContext(), kecaks);
-                            listView.setAdapter(adapter);
-
-                        } catch (JSONException e){
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
+        cardLogout = findViewById(R.id.cardLogout);
+        cardLogout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
+                alert
+                        .setMessage("Apakah anda akan Logout ?")
+                        .setCancelable(false)
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                                SharedPrefManager.getInstance(getApplicationContext()).logout();
+                            }
+                        })
+                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = alert.create();
+                alertDialog.show();
             }
         });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.android.kecak;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,10 +52,43 @@ public class PemesananAdapter extends BaseAdapter {
             txtStatus.setText("Telah dikonfirmasi");
         }
 
+        konfirmasi.getId_pemesanan();
+        konfirmasi.getPengunjung_id();
+        konfirmasi.getKecak_id();
+        konfirmasi.getTanggal_pesan();
+        konfirmasi.getJumlah();
+        konfirmasi.getHarga();
+        konfirmasi.getTotal();
+        konfirmasi.getStatus();
+
         Pengunjung user = SharedPrefManager.getInstance(c).getUser();
         TextView txtNamaPengunjung = convertView.findViewById(R.id.txtNamaPengunjung);
         txtNamaPengunjung.setText(user.getNama_pengunjung());
 
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openKonfirmasi(konfirmasi.getId_pemesanan(), konfirmasi.getPengunjung_id(), konfirmasi.getKecak_id(),
+                        konfirmasi.getTanggal_pesan(), konfirmasi.getJumlah(), konfirmasi.getHarga(), konfirmasi.getTotal());
+            }
+        });
+
         return convertView;
+    }
+
+    private void openKonfirmasi(
+            long id_pemesanan, long pengunjung_id, long kecak_id,
+            String tanggal_pesan, long jumlah, long harga, long total)
+    {
+        Intent detailKonfirmasi = new Intent(c, KonfirmasiActivity.class);
+        detailKonfirmasi.putExtra("id_pemesanan", id_pemesanan);
+        detailKonfirmasi.putExtra("pengunjung_id", pengunjung_id);
+        detailKonfirmasi.putExtra("kecak_id", kecak_id);
+        detailKonfirmasi.putExtra("tanggal_pesan", tanggal_pesan);
+        detailKonfirmasi.putExtra("jumlah", jumlah);
+        detailKonfirmasi.putExtra("harga", harga);
+        detailKonfirmasi.putExtra("total", total);
+        detailKonfirmasi.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        c.startActivity(detailKonfirmasi);
     }
 }

@@ -49,103 +49,222 @@
 
                         <ImageView
                             android:scaleType="fitXY"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="30dp"
                             android:layout_gravity="center"
                             android:src="@drawable/stikom_bali"
                             android:layout_width="100dp"
                             android:layout_height="130dp" />
 
                         <androidx.cardview.widget.CardView
-                            android:layout_marginTop="20dp"
-                            android:layout_marginStart="30dp"
-                            android:layout_marginEnd="30dp"
-                            android:layout_marginBottom="30dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginEnd="50dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content">
 
-                            <LinearLayout
-                                android:orientation="vertical"
+                            <ScrollView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent">
 
                                 <LinearLayout
-                                    android:layout_marginStart="15dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:layout_marginTop="15dp"
-                                    android:gravity="center"
-                                    android:orientation="horizontal"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content">
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
 
-                                    <androidx.cardview.widget.CardView
-                                        android:id="@+id/cardKonfirmasi"
-                                        android:layout_width="120dp"
-                                        android:layout_height="120dp">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="15dp"
+                                        android:layout_marginTop="15dp"
+                                        android:layout_marginEnd="15dp"
+                                        android:gravity="center"
+                                        android:orientation="horizontal">
 
-                                        <LinearLayout
-                                            android:layout_gravity="center"
-                                            android:orientation="vertical"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content">
+                                        <androidx.cardview.widget.CardView
+                                            android:id="@+id/cardKecak"
+                                            android:layout_width="120dp"
+                                            android:layout_height="120dp">
 
-                                            <ImageView
-                                                android:layout_gravity="center"
-                                                android:scaleType="fitXY"
-                                                android:src="@drawable/ic_content_copy_24dp"
-                                                android:layout_width="50dp"
-                                                android:layout_height="50dp" />
-
-                                            <TextView
-                                                android:textAlignment="center"
-                                                android:layout_marginTop="5dp"
-                                                android:text="Konfirmasi"
+                                            <LinearLayout
                                                 android:layout_width="match_parent"
-                                                android:layout_height="wrap_content" />
-
-                                        </LinearLayout>
-
-                                    </androidx.cardview.widget.CardView>
-
-                                    <androidx.cardview.widget.CardView
-                                        android:id="@+id/cardAbout"
-                                        android:layout_width="120dp"
-                                        android:layout_height="120dp">
-
-                                        <LinearLayout
-                                            android:layout_gravity="center"
-                                            android:orientation="vertical"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content">
-
-                                            <ImageView
+                                                android:layout_height="wrap_content"
                                                 android:layout_gravity="center"
-                                                android:scaleType="fitXY"
-                                                android:src="@drawable/ic_person_24dp"
-                                                android:layout_width="50dp"
-                                                android:layout_height="50dp" />
+                                                android:orientation="vertical">
 
-                                            <TextView
-                                                android:textAlignment="center"
-                                                android:layout_marginTop="5dp"
-                                                android:text="About"
+                                                <ImageView
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_gravity="center"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/ic_event_24dp" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Kecak"
+                                                    android:textAlignment="center" />
+
+                                            </LinearLayout>
+
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:id="@+id/cardKonfirmasi"
+                                            android:layout_width="120dp"
+                                            android:layout_height="120dp">
+
+                                            <LinearLayout
                                                 android:layout_width="match_parent"
-                                                android:layout_height="wrap_content" />
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:orientation="vertical">
 
-                                        </LinearLayout>
+                                                <ImageView
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_gravity="center"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/ic_content_copy_24dp" />
 
-                                    </androidx.cardview.widget.CardView>
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Konfirmasi"
+                                                    android:textAlignment="center" />
+
+                                            </LinearLayout>
+
+                                        </androidx.cardview.widget.CardView>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="15dp"
+                                        android:layout_marginEnd="15dp"
+                                        android:gravity="center"
+                                        android:orientation="horizontal">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:id="@+id/cardHistory"
+                                            android:layout_width="120dp"
+                                            android:layout_height="120dp">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_gravity="center"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/ic_history_24dp" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="History"
+                                                    android:textAlignment="center" />
+
+                                            </LinearLayout>
+
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:id="@+id/cardAbout"
+                                            android:layout_width="120dp"
+                                            android:layout_height="120dp">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_gravity="center"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/ic_person_24dp" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="About"
+                                                    android:textAlignment="center" />
+
+                                            </LinearLayout>
+
+                                        </androidx.cardview.widget.CardView>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="15dp"
+                                        android:layout_marginEnd="15dp"
+                                        android:layout_marginBottom="15dp"
+                                        android:gravity="center"
+                                        android:orientation="horizontal">
+
+                                        <androidx.cardview.widget.CardView
+                                            android:id="@+id/cardLogout"
+                                            android:layout_width="120dp"
+                                            android:layout_height="120dp">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_gravity="center"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/ic_logout_24dp" />
+
+                                                <TextView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Logout"
+                                                    android:textAlignment="center" />
+
+                                            </LinearLayout>
+
+                                        </androidx.cardview.widget.CardView>
+
+                                        <androidx.cardview.widget.CardView
+                                            android:layout_width="120dp"
+                                            android:layout_height="120dp">
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:orientation="vertical">
+
+                                            </LinearLayout>
+
+                                        </androidx.cardview.widget.CardView>
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
 
-                                <ListView
-                                    android:layout_marginStart="15dp"
-                                    android:layout_marginEnd="15dp"
-                                    android:layout_marginBottom="15dp"
-                                    android:id="@+id/listView"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"/>
-
-                            </LinearLayout>
+                            </ScrollView>
 
                         </androidx.cardview.widget.CardView>
 

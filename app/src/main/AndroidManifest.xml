@@ -16,7 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".KecakList"></activity>
+        <activity android:name=".HistoryDetail" />
+        <activity android:name=".HistoryActivity" />
+        <activity android:name=".AboutActivity" />
         <activity android:name=".PemesananActivity" />
         <activity android:name=".KonfirmasiActivity" />
         <activity android:name=".KecakActivity" />
