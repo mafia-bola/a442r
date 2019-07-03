@@ -80,7 +80,7 @@ public class KecakList extends AppCompatActivity {
                                     String foto_kecak = dataKecak.getString("foto");
                                     String harga = dataKecak.getString("harga");
 
-                                    String urlAddress = getString(R.string.urlAddress);
+                                    String urlAddress = getString(R.string.imageAddress);
                                     foto_kecak = urlAddress+foto_kecak;
 
                                     kecak = new Kecak();
