@@ -25,9 +25,4 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.uncopt.android.widget.text.justify.JustifiedTextView
-        android:id="@+id/txtAlamat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 </LinearLayout>

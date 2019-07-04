@@ -147,12 +147,6 @@ public class KonfirmasiActivity extends AppCompatActivity {
 
     private void uploadBitmap() {
         final long id_pemesanan = Long.parseLong(txtIdPemesanan.getText().toString());
-//        final String pengunjung_id = txtIdPengunjung.getText().toString();
-//        final String kecak_id = txtIdKecak.getText().toString();
-//        final String tanggal_pesan = txtTanggalPesan.getText().toString();
-//        final String jumlah = txtJumlah.getText().toString();
-//        final String harga = txtHarga.getText().toString();
-//        final String total = txtTotal.getText().toString();
         final String no_rekening = txtNoRekening.getText().toString();
         final String nama_bank = txtNamaBank.getText().toString();
 

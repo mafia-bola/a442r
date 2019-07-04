@@ -25,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.uncopt.android.widget.text.justify.JustifiedTextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,12 +35,13 @@ import java.util.Map;
 
 public class KecakActivity extends AppCompatActivity {
 
-    TextView judulKecak, txtJadwal, txtHarga, txtDeskripsi;
+    TextView judulKecak, txtJadwal, txtHarga;
     TextView txtIdKecak, txtIdPengunjung;
     TextView txtNamaPengunjung;
     ImageView fotoKecak;
     Toolbar toolbar;
     Button btnPemesanan;
+    JustifiedTextView txtDeskripsi;
 
     EditText editJumlah;
     TextView txtTotal;

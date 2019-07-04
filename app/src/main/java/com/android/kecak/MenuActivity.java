@@ -86,11 +86,9 @@ public class MenuActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         JustifiedTextView txtNama = headerView.findViewById(R.id.txtNama);
         JustifiedTextView txtEmail = headerView.findViewById(R.id.txtEmail);
-        JustifiedTextView txtAlamat = headerView.findViewById(R.id.txtAlamat);
 
         txtNama.setText(user.getNama_pengunjung());
         txtEmail.setText(user.getEmail());
-        txtAlamat.setText(user.getAlamat());
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -143,7 +141,7 @@ public class MenuActivity extends AppCompatActivity {
         cardKecak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent kecak = new Intent(MenuActivity.this, KecakList.class);
+                Intent kecak = new Intent(MenuActivity.this, KecakListActivity.class);
                 startActivity(kecak);
                 finish();
             }

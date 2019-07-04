@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.uncopt.android.widget.text.justify.JustifiedTextView;
 import java.util.ArrayList;
@@ -44,9 +45,11 @@ public class KecakAdapter extends BaseAdapter {
 
         JustifiedTextView txtKecak = convertView.findViewById(R.id.txtKecak);
         ImageView imageList = convertView.findViewById(R.id.imageKecak);
+        TextView txtJadwal = convertView.findViewById(R.id.txtJadwal);
 
         final Kecak kecak = (Kecak) this.getItem(position);
         txtKecak.setText(kecak.getNama_kecak());
+        txtJadwal.setText(kecak.getJadwal());
         PicassoClient.downloadImage(c, kecak.getFoto_kecak(), imageList);
 
         kecak.getId_kecak();
