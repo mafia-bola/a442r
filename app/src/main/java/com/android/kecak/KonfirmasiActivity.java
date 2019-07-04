@@ -1,9 +1,11 @@
 package com.android.kecak;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.NetworkRequest;
@@ -45,8 +47,6 @@ public class KonfirmasiActivity extends AppCompatActivity {
 
     private Bitmap bitmap;
     private int PICK_IMAGE_REQUEST = 1;
-
-    TextView txtBukti;
 
     @Override
     public void onBackPressed() {
@@ -97,7 +97,6 @@ public class KonfirmasiActivity extends AppCompatActivity {
         txtTotal.setText(String.valueOf(total));
 
         imageView = findViewById(R.id.imageView);
-        txtBukti = findViewById(R.id.txtBukti);
         btnGaleri = findViewById(R.id.btnGaleri);
         btnGaleri.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +109,28 @@ public class KonfirmasiActivity extends AppCompatActivity {
         btnKonfirmasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadBitmap();
+                AlertDialog.Builder alert = new AlertDialog.Builder(KonfirmasiActivity.this);
+                alert
+                        .setMessage("Apakah anda akan melakukan konfirmasi pemesanan ?")
+                        .setCancelable(false)
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent konfirmasi = new Intent(KonfirmasiActivity.this, HistoryActivity.class);
+                                startActivity(konfirmasi);
+                                finishAffinity();
+                                uploadBitmap();
+                            }
+                        })
+                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = alert.create();
+                alertDialog.show();
+
             }
         });
     }

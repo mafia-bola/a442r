@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -107,7 +108,6 @@ public class KecakActivity extends AppCompatActivity {
 
         txtTotal = findViewById(R.id.txtTotal);
         btnPenjumlahan = findViewById(R.id.btnPenjumlahan);
-
         btnPenjumlahan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,10 +125,27 @@ public class KecakActivity extends AppCompatActivity {
         btnPemesanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent konfirmasi = new Intent(KecakActivity.this, PemesananActivity.class);
-                startActivity(konfirmasi);
-                finishAffinity();
-                pemesanan();
+                AlertDialog.Builder alert = new AlertDialog.Builder(KecakActivity.this);
+                alert
+                        .setMessage("Apakah anda akan melakukan pemesanan ?")
+                        .setCancelable(false)
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent pemesanan = new Intent(KecakActivity.this, PemesananActivity.class);
+                                startActivity(pemesanan);
+                                finishAffinity();
+                                pemesanan();
+                            }
+                        })
+                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = alert.create();
+                alertDialog.show();
             }
         });
     }
