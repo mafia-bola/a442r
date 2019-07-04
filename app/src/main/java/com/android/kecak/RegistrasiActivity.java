@@ -109,7 +109,7 @@ public class RegistrasiActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(RegistrasiActivity.this);
                 alert
-                        .setMessage("Apakah anda akan kembali ke Login ?")
+                        .setMessage("Apakah anda akan yakin dengan Registrasi Data berikut ?")
                         .setCancelable(false)
                         .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             @Override

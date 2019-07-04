@@ -76,12 +76,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
-                    <EditText
-                        android:id="@+id/txtTanggal"
+                    <Button
+                        android:id="@+id/btnTanggal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Tanggal Pesanan"
-                        android:inputType="date"/>
+                        android:text="Pilih Tanggal"/>
+
+                    <TextView
+                        android:id="@+id/txtTanggal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
                     <LinearLayout
                         android:orientation="horizontal"
