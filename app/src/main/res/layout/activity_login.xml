@@ -38,6 +38,14 @@
                     android:layout_gravity="center"
                     android:layout_margin="50dp">
 
+                    <ImageView
+                        android:scaleType="fitXY"
+                        android:layout_gravity="center"
+                        android:src="@drawable/stikom_bali"
+                        android:layout_width="100dp"
+                        android:layout_height="130dp"
+                        android:layout_marginBottom="30dp"/>
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
