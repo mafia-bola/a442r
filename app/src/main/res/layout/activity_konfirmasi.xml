@@ -5,8 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="false"
-    android:focusableInTouchMode="true"
     tools:context=".KonfirmasiActivity">
 
     <FrameLayout
@@ -30,6 +28,8 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:focusable="false"
+                    android:focusableInTouchMode="true"
                     android:layout_margin="20dp">
 
                     <TextView
@@ -61,13 +61,16 @@
                         android:id="@+id/txtNoRekening"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Masukkan No. Rekening"/>
+                        android:hint="Masukkan No. Rekening"
+                        android:inputType="number"/>
 
                     <EditText
                         android:id="@+id/txtNamaBank"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Masukkan Nama Bank"/>
+                        android:hint="Masukkan Nama Bank"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"/>
 
                     <Button
                         android:id="@+id/btnGaleri"
@@ -100,6 +103,7 @@
                         android:text="Konfirmasi"/>
 
                     <ImageView
+                        android:scaleType="centerCrop"
                         android:id="@+id/imageView"
                         android:layout_width="match_parent"
                         android:layout_height="180dp" />

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -43,14 +44,18 @@ public class PemesananAdapter extends BaseAdapter {
 
         TextView txtTanggalPesan = convertView.findViewById(R.id.txtTanggalPesan);
         TextView txtStatus = convertView.findViewById(R.id.txtStatus);
+        ImageView imageKecak = convertView.findViewById(R.id.imageKecak);
+        TextView txtNamaKecak = convertView.findViewById(R.id.txtNamaKecak);
 
         final Konfirmasi konfirmasi = (Konfirmasi) this.getItem(position);
         txtTanggalPesan.setText(konfirmasi.getTanggal_pesan());
         if (konfirmasi.getStatus().equals("0")){
-            txtStatus.setText("Belum terkonfirmasi");
+            txtStatus.setText("Status : "+"Belum terkonfirmasi");
         } else {
-            txtStatus.setText("Telah dikonfirmasi");
+            txtStatus.setText("Status : "+"Telah dikonfirmasi");
         }
+        PicassoClient.downloadImage(c, konfirmasi.getFoto_kecak(), imageKecak);
+        txtNamaKecak.setText(konfirmasi.getNama_kecak());
 
         konfirmasi.getId_pemesanan();
         konfirmasi.getPengunjung_id();

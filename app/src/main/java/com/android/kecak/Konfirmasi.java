@@ -5,6 +5,24 @@ public class Konfirmasi {
     String tanggal_pesan, bukti_transfer, no_rekening, nama_bank;
     String status;
 
+    String foto_kecak, nama_kecak;
+
+    public String getFoto_kecak() {
+        return foto_kecak;
+    }
+
+    public void setFoto_kecak(String foto_kecak) {
+        this.foto_kecak = foto_kecak;
+    }
+
+    public String getNama_kecak() {
+        return nama_kecak;
+    }
+
+    public void setNama_kecak(String nama_kecak) {
+        this.nama_kecak = nama_kecak;
+    }
+
     public String getStatus() {
         return status;
     }

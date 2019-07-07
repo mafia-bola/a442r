@@ -91,6 +91,11 @@ public class PemesananActivity extends AppCompatActivity {
                                     String no_rekening = pemesanan.getString("no_rekening");
                                     String nama_bank = pemesanan.getString("nama_bank");
                                     String status = pemesanan.getString("status");
+                                    String foto_kecak = pemesanan.getString("foto");
+                                    String nama_kecak = pemesanan.getString("nama_kecak");
+
+                                    String urlAddress = getString(R.string.imageAddress);
+                                    foto_kecak = urlAddress+foto_kecak;
 
                                     konfirmasi = new Konfirmasi();
                                     konfirmasi.setId_pemesanan(id_pemesanan);
@@ -104,6 +109,8 @@ public class PemesananActivity extends AppCompatActivity {
                                     konfirmasi.setNo_rekening(no_rekening);
                                     konfirmasi.setNama_bank(nama_bank);
                                     konfirmasi.setStatus(status);
+                                    konfirmasi.setFoto_kecak(foto_kecak);
+                                    konfirmasi.setNama_kecak(nama_kecak);
 
                                     pesan.add(konfirmasi);
                                 }
