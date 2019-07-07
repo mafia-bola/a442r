@@ -167,16 +167,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        cardAbout = findViewById(R.id.cardAbout);
-        cardAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent about = new Intent(MenuActivity.this, AboutActivity.class);
-                startActivity(about);
-                finish();
-            }
-        });
-
         cardLogout = findViewById(R.id.cardLogout);
         cardLogout.setOnClickListener(new View.OnClickListener() {
             @Override

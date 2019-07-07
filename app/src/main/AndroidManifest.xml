@@ -17,9 +17,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".KecakListActivity"></activity>
-        <activity android:name=".HistoryDetail" />
+        <activity android:name=".HistoryDetailActivity" />
         <activity android:name=".HistoryActivity" />
-        <activity android:name=".AboutActivity" />
         <activity android:name=".PemesananActivity" />
         <activity android:name=".KonfirmasiActivity" />
         <activity android:name=".KecakActivity" />
