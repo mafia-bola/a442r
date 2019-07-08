@@ -11,108 +11,207 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <ImageView
+            android:scaleType="centerCrop"
+            android:src="@drawable/kecak_konfirmasi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-        <LinearLayout
-            android:orientation="vertical"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <include
-                android:id="@+id/toolbar"
-                layout="@layout/toolbar" />
+            <ImageView
+                android:scaleType="centerCrop"
+                android:src="@drawable/gradient"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:focusable="false"
-                    android:focusableInTouchMode="true"
-                    android:layout_margin="20dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/txtNamaPengunjung"
+                <include
+                    android:id="@+id/toolbar"
+                    layout="@layout/toolbar" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/txtTanggalPesan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/txtJumlah"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:focusable="false"
+                            android:focusableInTouchMode="true"
+                            android:layout_margin="20dp">
 
-                    <TextView
-                        android:id="@+id/txtHarga"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/txtTotal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                                <TextView
+                                    android:textColor="#000"
+                                    android:text="Nama Pengunjung : "
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
 
-                    <EditText
-                        android:id="@+id/txtNoRekening"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Masukkan No. Rekening"
-                        android:inputType="number"/>
+                                <TextView
+                                    android:textColor="#000"
+                                    android:id="@+id/txtNamaPengunjung"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
 
-                    <EditText
-                        android:id="@+id/txtNamaBank"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Masukkan Nama Bank"
-                        android:imeOptions="actionDone"
-                        android:inputType="text"/>
+                            </LinearLayout>
 
-                    <Button
-                        android:id="@+id/btnGaleri"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Upload Bukti Transfer"/>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/txtIdPemesanan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="invisible" />
+                                <TextView
+                                    android:textColor="#000"
+                                    android:text="Tanggal Pemesanan : "
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:id="@+id/txtIdPengunjung"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="invisible" />
+                                <TextView
+                                    android:textColor="#000"
+                                    android:id="@+id/txtTanggalPesan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:id="@+id/txtIdKecak"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="invisible" />
+                            </LinearLayout>
 
-                    <Button
-                        android:id="@+id/btnKonfirmasi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Konfirmasi"/>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:scaleType="centerCrop"
-                        android:id="@+id/imageView"
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp" />
+                                <TextView
+                                    android:textColor="#000"
+                                    android:text="Jumlah Pemesanan : "
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
 
-                </LinearLayout>
+                                <TextView
+                                    android:textColor="#000"
+                                    android:id="@+id/txtJumlah"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:textColor="#000"
+                                    android:text="Harga Tiket : "
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:textColor="#000"
+                                    android:id="@+id/txtHarga"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:textColor="#000"
+                                    android:text="Total Pemesanan : "
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                                <TextView
+                                    android:textColor="#000"
+                                    android:id="@+id/txtTotal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+
+                            <EditText
+                                android:layout_marginTop="10dp"
+                                android:id="@+id/txtNoRekening"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Masukkan No. Rekening"
+                                android:inputType="number"/>
+
+                            <EditText
+                                android:id="@+id/txtNamaBank"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Masukkan Nama Bank"
+                                android:imeOptions="actionDone"
+                                android:inputType="text"/>
+
+                            <Button
+                                style="@style/Widget.AppCompat.Button.Colored"
+                                android:id="@+id/btnGaleri"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Upload Bukti Transfer"/>
+
+                            <TextView
+                                android:id="@+id/txtIdPemesanan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="invisible" />
+
+                            <TextView
+                                android:id="@+id/txtIdPengunjung"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="invisible" />
+
+                            <TextView
+                                android:id="@+id/txtIdKecak"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="invisible" />
+
+                            <Button
+                                style="@style/Widget.AppCompat.Button.Colored"
+                                android:id="@+id/btnKonfirmasi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Konfirmasi"/>
+
+                            <ImageView
+                                android:layout_marginTop="10dp"
+                                android:scaleType="centerCrop"
+                                android:id="@+id/imageView"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp" />
+
+                        </LinearLayout>
+
+                        </ScrollView>
+
+                    </LinearLayout>
 
             </LinearLayout>
 
-        </ScrollView>
+        </FrameLayout>
 
     </FrameLayout>
 

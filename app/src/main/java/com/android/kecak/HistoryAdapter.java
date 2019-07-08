@@ -67,6 +67,9 @@ public class HistoryAdapter extends BaseAdapter {
         konfirmasi.getStatus();
         konfirmasi.getFoto_kecak();
         konfirmasi.getNama_kecak();
+        konfirmasi.getBukti_transfer();
+        konfirmasi.getNo_rekening();
+        konfirmasi.getNama_bank();
 
         Pengunjung user = SharedPrefManager.getInstance(c).getUser();
         TextView txtNamaPengunjung = convertView.findViewById(R.id.txtNamaPengunjung);
@@ -77,7 +80,8 @@ public class HistoryAdapter extends BaseAdapter {
             public void onClick(View v) {
                 openKonfirmasi(konfirmasi.getId_pemesanan(), konfirmasi.getPengunjung_id(), konfirmasi.getKecak_id(),
                         konfirmasi.getTanggal_pesan(), konfirmasi.getJumlah(), konfirmasi.getHarga(), konfirmasi.getTotal(),
-                        konfirmasi.getFoto_kecak(), konfirmasi.getNama_kecak());
+                        konfirmasi.getFoto_kecak(), konfirmasi.getNama_kecak(),
+                        konfirmasi.getBukti_transfer(), konfirmasi.getNo_rekening(), konfirmasi.getNama_bank());
             }
         });
 
@@ -86,7 +90,8 @@ public class HistoryAdapter extends BaseAdapter {
 
     private void openKonfirmasi(
             long id_pemesanan, long pengunjung_id, long kecak_id,
-            String tanggal_pesan, long jumlah, long harga, long total, String foto_kecak, String nama_kecak) {
+            String tanggal_pesan, long jumlah, long harga, long total, String foto_kecak, String nama_kecak,
+            String bukti_transfer, String no_rekening, String nama_bank) {
         Intent detailKonfirmasi = new Intent(c, HistoryDetailActivity.class);
         detailKonfirmasi.putExtra("id_pemesanan", id_pemesanan);
         detailKonfirmasi.putExtra("pengunjung_id", pengunjung_id);
@@ -97,6 +102,9 @@ public class HistoryAdapter extends BaseAdapter {
         detailKonfirmasi.putExtra("total", total);
         detailKonfirmasi.putExtra("foto", foto_kecak);
         detailKonfirmasi.putExtra("nama_kecak", nama_kecak);
+        detailKonfirmasi.putExtra("bukti_transfer", bukti_transfer);
+        detailKonfirmasi.putExtra("no_rekening", no_rekening);
+        detailKonfirmasi.putExtra("nama_bank", nama_bank);
         detailKonfirmasi.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         c.startActivity(detailKonfirmasi);
     }

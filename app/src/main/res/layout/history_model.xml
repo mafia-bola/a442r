@@ -7,11 +7,16 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -37,11 +42,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:textColor="#000"
                             android:text="Nama Pengunjung : "
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
                         <TextView
+                            android:textColor="#000"
                             android:id="@+id/txtNamaPengunjung"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -54,11 +61,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:textColor="#000"
                             android:text="Nama Kecak : "
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
                         <TextView
+                            android:textColor="#000"
                             android:id="@+id/txtNamaKecak"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -71,11 +80,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:textColor="#000"
                             android:text="Tanggal Pemesanan : "
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
                         <TextView
+                            android:textColor="#000"
                             android:id="@+id/txtTanggalPesan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -83,6 +94,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:textColor="#000"
                         android:id="@+id/txtStatus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -90,6 +102,8 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </FrameLayout>
 

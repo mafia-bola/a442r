@@ -68,6 +68,9 @@ public class KecakActivity extends AppCompatActivity {
 
         txtIdKecak = findViewById(R.id.txtIdKecak);
         txtIdPengunjung = findViewById(R.id.txtIdPengunjung);
+        editJumlah = findViewById(R.id.editJumlah);
+        txtTotal = findViewById(R.id.txtTotal);
+        editJumlah.setText("0");
 
         Intent kecak1 = getIntent();
         final long id = kecak1.getLongExtra("id_kecak",0);
@@ -93,9 +96,6 @@ public class KecakActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(judul);
 
-        editJumlah = findViewById(R.id.editJumlah);
-        editJumlah.setText("0");
-
         dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         txtTanggal = findViewById(R.id.txtTanggal);
         btnTanggal = findViewById(R.id.btnTanggal);
@@ -106,7 +106,6 @@ public class KecakActivity extends AppCompatActivity {
             }
         });
 
-        txtTotal = findViewById(R.id.txtTotal);
         btnPenjumlahan = findViewById(R.id.btnPenjumlahan);
         btnPenjumlahan.setOnClickListener(new View.OnClickListener() {
             @Override

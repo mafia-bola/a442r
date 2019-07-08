@@ -96,7 +96,6 @@ public class RegistrasiActivity extends AppCompatActivity {
         txtUsername = findViewById(R.id.txtUsername);
         txtPassword = findViewById(R.id.txtPassword);
         btnDaftar = findViewById(R.id.btnDaftar);
-        btnClean = findViewById(R.id.btnClean);
 
         txtNama.addTextChangedListener(textWatcher);
         txtAlamat.addTextChangedListener(textWatcher);
@@ -128,16 +127,6 @@ public class RegistrasiActivity extends AppCompatActivity {
                         });
                 AlertDialog alertDialog = alert.create();
                 alertDialog.show();
-            }
-        });
-
-        btnClean.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                txtNama.setText("");
-                txtAlamat.setText("");
-                txtUsername.setText("");
-                txtPassword.setText("");
             }
         });
     }

@@ -97,6 +97,9 @@ public class HistoryActivity extends AppCompatActivity {
                                     String urlAddress = getString(R.string.imageAddress);
                                     foto_kecak = urlAddress+foto_kecak;
 
+                                    String link = getString(R.string.imageAddress);
+                                    bukti_transfer = link+bukti_transfer;
+
                                     konfirmasi = new Konfirmasi();
                                     konfirmasi.setId_pemesanan(id_pemesanan);
                                     konfirmasi.setPengunjung_id(pengunjung_id);

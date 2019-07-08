@@ -93,6 +93,7 @@
                                             android:src="@drawable/ic_event_24dp" />
 
                                         <TextView
+                                            android:textColor="#000"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
@@ -122,6 +123,7 @@
                                             android:src="@drawable/ic_content_copy_24dp" />
 
                                         <TextView
+                                            android:textColor="#000"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
@@ -162,6 +164,7 @@
                                             android:src="@drawable/ic_history_24dp" />
 
                                         <TextView
+                                            android:textColor="#000"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
@@ -191,6 +194,7 @@
                                             android:src="@drawable/ic_logout_24dp" />
 
                                         <TextView
+                                            android:textColor="#000"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
