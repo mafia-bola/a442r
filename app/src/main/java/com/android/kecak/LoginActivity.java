@@ -1,10 +1,14 @@
 package com.android.kecak;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -34,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText editUsername, editPassword;
     Button btnMasuk, btnRegistrasi;
+
+    private static final int GALLERY_PERMISSION_REQUEST = 1;
 
     @Override
     public void onBackPressed() {
@@ -87,6 +93,8 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        getPermissionGallery();
     }
 
     private void userLogin() {
@@ -161,5 +169,30 @@ public class LoginActivity extends AppCompatActivity {
         };
 
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    private void getPermissionGallery() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED){
+            if (shouldShowRequestPermissionRationale(
+                    Manifest.permission.READ_EXTERNAL_STORAGE)){
+            }
+
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}
+                    ,GALLERY_PERMISSION_REQUEST);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == GALLERY_PERMISSION_REQUEST){
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this, "Akses Galeri telah diaktifkan", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Akses Galeri tidak diaktifkan", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 }

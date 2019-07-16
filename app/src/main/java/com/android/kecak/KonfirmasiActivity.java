@@ -116,7 +116,7 @@ public class KonfirmasiActivity extends AppCompatActivity {
                         .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent konfirmasi = new Intent(KonfirmasiActivity.this, HistoryActivity.class);
+                                Intent konfirmasi = new Intent(KonfirmasiActivity.this, MenuActivity.class);
                                 startActivity(konfirmasi);
                                 finishAffinity();
                                 uploadBitmap();

@@ -30,7 +30,7 @@ public class MenuActivity extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     Toolbar toolbar;
-    CardView cardKecak, cardKonfirmasi, cardHistory, cardAbout, cardLogout;
+    CardView cardKecak, cardKonfirmasi, cardHistory, cardLogout;
 
     @Override
     public void onBackPressed() {
@@ -59,16 +59,6 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                    Uri.parse("package:" + getPackageName()));
-            finish();
-            startActivity(intent);
-            return;
-        }
 
         if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
             finish();
@@ -161,9 +151,9 @@ public class MenuActivity extends AppCompatActivity {
         cardHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent history = new Intent(MenuActivity.this, HistoryActivity.class);
-                startActivity(history);
-                finish();
+//                Intent history = new Intent(MenuActivity.this, HistoryActivity.class);
+//                startActivity(history);
+//                finish();
             }
         });
 
