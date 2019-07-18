@@ -15,7 +15,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-
 public class TiketDetailActivity extends AppCompatActivity {
 
     Toolbar toolbar;
@@ -24,7 +23,7 @@ public class TiketDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_detail);
+        setContentView(R.layout.activity_tiket_detail);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -34,7 +33,7 @@ public class TiketDetailActivity extends AppCompatActivity {
         final long id_pemesanan = history.getLongExtra("id_pemesanan",0);
 
         pdfView = findViewById(R.id.pdfView);
-        String pdfAddress = getString(R.string.pdfAddress);
+        final String pdfAddress = getString(R.string.pdfAddress);
         new viewPDF().execute(pdfAddress+id_pemesanan+"_kecak_ticket.pdf");
     }
 

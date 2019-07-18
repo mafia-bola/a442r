@@ -39,7 +39,7 @@ public class TiketAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null){
-            convertView = LayoutInflater.from(c).inflate(R.layout.history_model, parent, false);
+            convertView = LayoutInflater.from(c).inflate(R.layout.model_tiket, parent, false);
         }
 
         TextView txtTanggalPesan = convertView.findViewById(R.id.txtTanggalPesan);

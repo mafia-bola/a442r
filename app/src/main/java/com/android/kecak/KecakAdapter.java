@@ -40,7 +40,7 @@ public class KecakAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null){
-            convertView = LayoutInflater.from(c).inflate(R.layout.kecak_model, parent, false);
+            convertView = LayoutInflater.from(c).inflate(R.layout.model_kecak, parent, false);
         }
 
         JustifiedTextView txtKecak = convertView.findViewById(R.id.txtKecak);
