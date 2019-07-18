@@ -3,7 +3,7 @@
 
     <string name="openDrawer">Drawer dibuka</string>
     <string name="closeDrawer">Drawer ditutup</string>
-    <string name="urlAddress">http://192.168.43.132/kecak/public/</string>
-    <string name="imageAddress">http://192.168.43.132/kecak/public/storage/</string>
+    <string name="urlAddress">http://10.10.10.102/kecak/public/</string>
+    <string name="imageAddress">http://10.10.10.102/kecak/</string>
 
 </resources>

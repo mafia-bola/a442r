@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class HistoryActivity extends AppCompatActivity {
+public class TiketActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     ListView listView;
@@ -29,7 +29,7 @@ public class HistoryActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent back = new Intent(HistoryActivity.this, MenuActivity.class);
+        Intent back = new Intent(TiketActivity.this, MenuActivity.class);
         startActivity(back);
         finish();
     }
@@ -119,7 +119,7 @@ public class HistoryActivity extends AppCompatActivity {
                                 }
                             }
 
-                            HistoryAdapter adapter = new HistoryAdapter(getApplicationContext(), pesan);
+                            TiketAdapter adapter = new TiketAdapter(getApplicationContext(), pesan);
                             listView.setAdapter(adapter);
 
                         } catch (JSONException e){

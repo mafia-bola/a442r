@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class HistoryAdapter extends BaseAdapter {
+public class TiketAdapter extends BaseAdapter {
 
     Context c;
     ArrayList<Konfirmasi> pesan;
 
-    public HistoryAdapter(Context c, ArrayList<Konfirmasi> pesan) {
+    public TiketAdapter(Context c, ArrayList<Konfirmasi> pesan) {
         this.c = c;
         this.pesan = pesan;
     }
@@ -92,7 +92,7 @@ public class HistoryAdapter extends BaseAdapter {
             long id_pemesanan, long pengunjung_id, long kecak_id,
             String tanggal_pesan, long jumlah, long harga, long total, String foto_kecak, String nama_kecak,
             String bukti_transfer, String no_rekening, String nama_bank) {
-        Intent detailKonfirmasi = new Intent(c, HistoryDetailActivity.class);
+        Intent detailKonfirmasi = new Intent(c, TiketDetailActivity.class);
         detailKonfirmasi.putExtra("id_pemesanan", id_pemesanan);
         detailKonfirmasi.putExtra("pengunjung_id", pengunjung_id);
         detailKonfirmasi.putExtra("kecak_id", kecak_id);

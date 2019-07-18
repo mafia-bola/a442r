@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class HistoryDetailActivity extends AppCompatActivity {
+public class TiketDetailActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     ImageView imageKecak, imageBuktiTransfer;

@@ -161,14 +161,14 @@
                                             android:layout_height="50dp"
                                             android:layout_gravity="center"
                                             android:scaleType="fitXY"
-                                            android:src="@drawable/ic_history_24dp" />
+                                            android:src="@drawable/ic_book_24dp" />
 
                                         <TextView
                                             android:textColor="#000"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginTop="5dp"
-                                            android:text="History"
+                                            android:text="Tiket"
                                             android:textAlignment="center" />
 
                                     </LinearLayout>

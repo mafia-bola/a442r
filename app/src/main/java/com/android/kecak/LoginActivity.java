@@ -3,16 +3,14 @@ package com.android.kecak;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,13 +18,10 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,12 +29,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText editUsername, editPassword;
     Button btnMasuk, btnRegistrasi;
 
-    private static final int GALLERY_PERMISSION_REQUEST = 1;
+    private static final int MULTIPLE_PERMISSION_REQUEST = 1;
 
     @Override
     public void onBackPressed() {
@@ -94,7 +92,44 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        getPermissionGallery();
+        if (checkingPermission()){
+            Toast.makeText(this, "Akses telah diaktifkan", Toast.LENGTH_SHORT).show();
+        } else {
+            requestMultiplePermission();
+        }
+    }
+
+    private void requestMultiplePermission() {
+        ActivityCompat.requestPermissions(LoginActivity.this, new String[]
+                {
+                        READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE
+                }, MULTIPLE_PERMISSION_REQUEST);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case MULTIPLE_PERMISSION_REQUEST:
+                if (grantResults.length > 0){
+                    boolean ReadPermission = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean WritePermission = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+
+                    if (ReadPermission && WritePermission){
+                        Toast.makeText(this, "Akses telah diaktifkan", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Akses tidak diaktifkan", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                break;
+        }
+    }
+
+    private boolean checkingPermission() {
+        int onePermission = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
+        int secondPermission = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
+
+        return onePermission == PackageManager.PERMISSION_GRANTED && secondPermission == PackageManager.PERMISSION_GRANTED;
     }
 
     private void userLogin() {
@@ -169,30 +204,5 @@ public class LoginActivity extends AppCompatActivity {
         };
 
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
-    }
-
-    private void getPermissionGallery() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED){
-            if (shouldShowRequestPermissionRationale(
-                    Manifest.permission.READ_EXTERNAL_STORAGE)){
-            }
-
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}
-                    ,GALLERY_PERMISSION_REQUEST);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == GALLERY_PERMISSION_REQUEST){
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this, "Akses Galeri telah diaktifkan", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Akses Galeri tidak diaktifkan", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
     }
 }

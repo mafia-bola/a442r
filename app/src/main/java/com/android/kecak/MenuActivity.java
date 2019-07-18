@@ -20,6 +20,7 @@ import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.uncopt.android.widget.text.justify.JustifiedTextView;
@@ -151,7 +152,7 @@ public class MenuActivity extends AppCompatActivity {
         cardHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent history = new Intent(MenuActivity.this, HistoryActivity.class);
+//                Intent history = new Intent(MenuActivity.this, TiketActivity.class);
 //                startActivity(history);
 //                finish();
             }
