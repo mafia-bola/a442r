@@ -4,68 +4,62 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.github.barteksc.pdfviewer.PDFView;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 
 public class TiketDetailActivity extends AppCompatActivity {
 
     Toolbar toolbar;
-    ImageView imageKecak, imageBuktiTransfer;
-    TextView txtNamaPengunjung, txtTanggalPesan, txtJumlah, txtHarga, txtTotal, txtNoRekening, txtNamaBank;
-    TextView txtIdPemesanan, txtIdPengunjung, txtIdKecak;
+    PDFView pdfView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_detail);
 
-        imageKecak = findViewById(R.id.imageKecak);
-        imageBuktiTransfer = findViewById(R.id.imageBuktiTransfer);
-        txtNamaPengunjung = findViewById(R.id.txtNamaPengunjung);
-        txtTanggalPesan = findViewById(R.id.txtTanggalPesan);
-        txtJumlah = findViewById(R.id.txtJumlah);
-        txtHarga = findViewById(R.id.txtHarga);
-        txtTotal = findViewById(R.id.txtTotal);
-        txtNoRekening = findViewById(R.id.txtNoRekening);
-        txtNamaBank = findViewById(R.id.txtNamaBank);
-
-        txtIdPemesanan = findViewById(R.id.txtIdPemesanan);
-        txtIdPengunjung = findViewById(R.id.txtIdPengunjung);
-        txtIdKecak = findViewById(R.id.txtIdKecak);
-
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("History Pemesanan");
-
-        Pengunjung user = SharedPrefManager.getInstance(this).getUser();
-        txtNamaPengunjung.setText(user.getNama_pengunjung());
+        getSupportActionBar().setTitle("Tiket Kecak");
 
         Intent history = getIntent();
         final long id_pemesanan = history.getLongExtra("id_pemesanan",0);
-        final long pengunjung_id = history.getLongExtra("pengunjung_id", 0);
-        final long kecak_id = history.getLongExtra("kecak_id",0);
-        final String tanggal_pesan = history.getStringExtra("tanggal_pesan");
-        final long jumlah = history.getLongExtra("jumlah",0);
-        final long harga = history.getLongExtra("harga",0);
-        final long total = history.getLongExtra("total",0);
-        final String no_rekening = history.getStringExtra("no_rekening");
-        final String nama_bank = history.getStringExtra("nama_bank");
 
-        final String bukti_transfer = history.getStringExtra("bukti_transfer");
-        final String foto_kecak = history.getStringExtra("foto");
+        pdfView = findViewById(R.id.pdfView);
+        String pdfAddress = getString(R.string.pdfAddress);
+        new viewPDF().execute(pdfAddress+id_pemesanan+"_kecak_ticket.pdf");
+    }
 
-        txtIdPemesanan.setText(String.valueOf(id_pemesanan));
-        txtIdPengunjung.setText(String.valueOf(pengunjung_id));
-        txtIdKecak.setText(String.valueOf(kecak_id));
-        txtTanggalPesan.setText(tanggal_pesan);
-        txtJumlah.setText(String.valueOf(jumlah));
-        txtHarga.setText(String.valueOf(harga));
-        txtTotal.setText(String.valueOf(total));
-        txtNoRekening.setText(no_rekening);
-        txtNamaBank.setText(nama_bank);
+    class viewPDF extends AsyncTask<String, Void, InputStream>{
 
-        PicassoClient.downloadImage(this, foto_kecak, imageKecak);
-        PicassoClient.downloadImage(this, bukti_transfer, imageBuktiTransfer);
+        @Override
+        protected InputStream doInBackground(String... strings) {
+            InputStream inputStream = null;
+            try {
+                URL url = new URL(strings[0]);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                if (urlConnection.getResponseCode() == 200){
+                    inputStream = new BufferedInputStream(urlConnection.getInputStream());
+                }
+            } catch (IOException e){
+                e.printStackTrace();
+                return null;
+            }
+
+            return inputStream;
+        }
+
+        @Override
+        protected void onPostExecute(InputStream inputStream) {
+            pdfView.fromStream(inputStream).load();
+        }
     }
 }

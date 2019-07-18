@@ -152,9 +152,9 @@ public class MenuActivity extends AppCompatActivity {
         cardHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent history = new Intent(MenuActivity.this, TiketActivity.class);
-//                startActivity(history);
-//                finish();
+                Intent history = new Intent(MenuActivity.this, TiketActivity.class);
+                startActivity(history);
+                finish();
             }
         });
 
