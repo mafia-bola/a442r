@@ -81,7 +81,7 @@
 
                             <TextView
                                 android:textColor="#000"
-                                android:text="Jadwal Event : "
+                                android:text="Jam Tayang : "
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
 

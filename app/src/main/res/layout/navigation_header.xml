@@ -6,14 +6,14 @@
     android:layout_margin="20dp"
     android:orientation="vertical">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/imageProfile"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:scaleType="centerCrop"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:scaleType="fitXY"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/image_not_found"/>
+        android:src="@drawable/logo_tiket_kecak"/>
 
     <com.uncopt.android.widget.text.justify.JustifiedTextView
         android:textColor="#000"
