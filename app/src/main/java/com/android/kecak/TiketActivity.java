@@ -51,7 +51,7 @@ public class TiketActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("History Pemesanan Kecak");
+        getSupportActionBar().setTitle("Tiket Kecak");
     }
 
     private void dataPemesanan() {
