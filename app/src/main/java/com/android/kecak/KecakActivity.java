@@ -80,7 +80,7 @@ public class KecakActivity extends AppCompatActivity {
         final String harga = kecak1.getStringExtra("harga");
         final String foto_kecak = kecak1.getStringExtra("foto_kecak");
 
-        Pengunjung user = SharedPrefManager.getInstance(this).getUser();
+        final Pengunjung user = SharedPrefManager.getInstance(this).getUser();
 
         judulKecak.setText(judul);
         txtJadwal.setText(jadwal);
@@ -106,8 +106,22 @@ public class KecakActivity extends AppCompatActivity {
             }
         });
 
-        btnPenjumlahan = findViewById(R.id.btnPenjumlahan);
-        btnPenjumlahan.setOnClickListener(new View.OnClickListener() {
+//        btnPenjumlahan = findViewById(R.id.btnPenjumlahan);
+//        btnPenjumlahan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String perhitungan;
+//                String pesanan;
+//
+//                pesanan = editJumlah.getText().toString().trim();
+//                perhitungan = txtHarga.getText().toString().trim();
+//
+//                long total = Long.parseLong(pesanan) * Long.parseLong(perhitungan);
+//                txtTotal.setText(String.valueOf(total));
+//            }
+//        });
+
+        btnPemesanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String perhitungan;
@@ -118,17 +132,17 @@ public class KecakActivity extends AppCompatActivity {
 
                 long total = Long.parseLong(pesanan) * Long.parseLong(perhitungan);
                 txtTotal.setText(String.valueOf(total));
-            }
-        });
 
-        btnPemesanan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(KecakActivity.this);
                 alert
-                        .setMessage("Apakah anda akan melakukan pemesanan ?")
+                        .setTitle("Detail Pemesanan Kecak")
+                        .setMessage("Nama : "+user.getNama_pengunjung()+"\n"+
+                            "Harga Tiket : "+harga+"\n"+"Tanggal Pemesanan : "+txtTanggal.getText().toString().trim()
+                                +"\n"+"Jumlah Pemesanan : "+editJumlah.getText().toString().trim()
+                                +"\n"+"Total Harga Pemesanan : "+txtTotal.getText().toString().trim()
+                        )
                         .setCancelable(false)
-                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Pesan Sekarang", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent pemesanan = new Intent(KecakActivity.this, PemesananActivity.class);
@@ -137,7 +151,7 @@ public class KecakActivity extends AppCompatActivity {
                                 pemesanan();
                             }
                         })
-                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Kembali", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();

@@ -155,6 +155,75 @@
 
                         </LinearLayout>
 
+                        <!--<LinearLayout-->
+                            <!--android:orientation="horizontal"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content">-->
+
+                            <!--<Button-->
+                                <!--style="@style/Widget.AppCompat.Button.Colored"-->
+                                <!--android:id="@+id/btnTanggal"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Pilih Tanggal"/>-->
+
+                            <!--<TextView-->
+                                <!--android:textColor="#000"-->
+                                <!--android:id="@+id/txtTanggal"-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content" />-->
+
+                        <!--</LinearLayout>-->
+
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:text="Jumlah Pemesanan"
+                            android:textColor="#000"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <!--<Button-->
+                                <!--style="@style/Widget.AppCompat.Button.Colored"-->
+                                <!--android:id="@+id/btnPenjumlahan"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Cek Total"/>-->
+
+                            <EditText
+                                android:textColor="#000"
+                                android:id="@+id/editJumlah"
+                                android:imeOptions="actionDone"
+                                android:inputType="number"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:visibility="invisible"
+                            android:textColor="#000"
+                            android:id="@+id/txtTotal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:text="Tanggal Pemesanan : "
+                            android:textColor="#000"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textColor="#000"
+                            android:id="@+id/txtTanggal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
@@ -165,51 +234,23 @@
                                 android:id="@+id/btnTanggal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Tanggal Pesan"/>
-
-                            <TextView
-                                android:textColor="#000"
-                                android:id="@+id/txtTanggal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                                android:text="Pilih Tanggal"/>
 
                             <Button
                                 style="@style/Widget.AppCompat.Button.Colored"
-                                android:id="@+id/btnPenjumlahan"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Total Pesanan"/>
-
-                            <EditText
-                                android:textColor="#000"
-                                android:id="@+id/editJumlah"
-                                android:hint="Jumlah Pesanan"
-                                android:imeOptions="actionDone"
-                                android:inputType="number"
+                                android:id="@+id/btnPemesanan"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:text="Cek Pemesanan"/>
 
                         </LinearLayout>
 
-                        <TextView
-                            android:textColor="#000"
-                            android:id="@+id/txtTotal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                        <Button
-                            style="@style/Widget.AppCompat.Button.Colored"
-                            android:id="@+id/btnPemesanan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Pesan"/>
+                        <!--<Button-->
+                            <!--style="@style/Widget.AppCompat.Button.Colored"-->
+                            <!--android:id="@+id/btnPemesanan"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Cek Pemesanan"/>-->
 
                     </LinearLayout>
 
