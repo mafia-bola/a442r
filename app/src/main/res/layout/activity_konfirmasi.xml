@@ -148,8 +148,16 @@
 
                             </LinearLayout>
 
+                            <TextView
+                                android:layout_marginTop="30dp"
+                                android:textSize="16sp"
+                                android:textColor="#000"
+                                android:text="Mohon melakukan transfer melalui bank BCA : 987654321 a.n tiket kecak uluwatu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
                             <EditText
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="20dp"
                                 android:id="@+id/txtNoRekening"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
