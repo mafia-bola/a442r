@@ -13,6 +13,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -205,6 +207,83 @@ public class KonfirmasiActivity extends AppCompatActivity {
             }
         };
 
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_cancel, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.btnCancel:
+                AlertDialog.Builder alert = new AlertDialog.Builder(KonfirmasiActivity.this);
+                alert
+                        .setTitle("Batalkan Pemesanan")
+                        .setMessage("Apakan anda akan membatalkan Pemesanan ini ?")
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                               batalPemesanan();
+                               Intent batal = new Intent(KonfirmasiActivity.this, PemesananActivity.class);
+                               startActivity(batal);
+                               finish();
+                            }
+                        })
+                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = alert.create();
+                alertDialog.show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void batalPemesanan() {
+        final long id_pemesanan = Long.parseLong(txtIdPemesanan.getText().toString());
+
+        String urlAddress = getString(R.string.urlAddress);
+        final String hapusPemesanan = urlAddress+"api/batalpesan/"+id_pemesanan;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, hapusPemesanan,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String status = jsonObject.getString("status");
+
+                            if (status.equals("sukses")){
+                                Toast.makeText(KonfirmasiActivity.this, "Pemesanan telah dibatalkan", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(KonfirmasiActivity.this, "Gagal melakukan pembatalan pesanan", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(KonfirmasiActivity.this, "Gagal melakukan pemesanan", Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", String.valueOf(id_pemesanan));
+                return params;
+            }
+        };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
