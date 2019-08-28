@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -36,6 +37,7 @@ public class TiketDetailActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     PDFView pdfView;
+    TextView txtIdPemesanan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +48,12 @@ public class TiketDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Tiket Kecak");
 
+        txtIdPemesanan = findViewById(R.id.txtIdPemesanan);
+
         Intent history = getIntent();
         final long id_pemesanan = history.getLongExtra("id_pemesanan",0);
 
+        txtIdPemesanan.setText(String.valueOf(id_pemesanan));
         pdfView = findViewById(R.id.pdfView);
         final String pdfAddress = getString(R.string.pdfAddress);
         new viewPDF().execute(pdfAddress+id_pemesanan+"_kecak_ticket.pdf");
@@ -117,11 +122,10 @@ public class TiketDetailActivity extends AppCompatActivity {
     }
 
     private void batalPemesanan() {
-        Intent history = getIntent();
-        final long id_pemesanan = history.getLongExtra("id_pemesanan",0);
+        final long id_pemesanan = Long.parseLong(txtIdPemesanan.getText().toString());
 
         String urlAddress = getString(R.string.urlAddress);
-        final String hapusPemesanan = urlAddress+"api/batalpesan/"+id_pemesanan;
+        final String hapusPemesanan = urlAddress+"api/hapuspesan/"+id_pemesanan;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, hapusPemesanan,
                 new Response.Listener<String>() {
